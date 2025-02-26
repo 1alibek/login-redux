@@ -3,7 +3,6 @@ import axios from "axios";
 
 const API_URL = "https://679b661733d316846323b711.mockapi.io/users";
 
-// 🚀 **Emailni tekshirish**
 export const verifyEmail = createAsyncThunk(
   "auth/verifyEmail",
   async (email, { rejectWithValue }) => {
@@ -15,14 +14,13 @@ export const verifyEmail = createAsyncThunk(
         return rejectWithValue("Email not found!");
       }
 
-      return email; // ✅ Email mavjud bo'lsa, uni qaytaramiz
+      return email; 
     } catch (error) {
       return rejectWithValue("Email verification failed.");
     }
   }
 );
 
-// 🚀 **Parolni yangilash**
 export const forgotPassword = createAsyncThunk(
   "auth/forgotPassword",
   async ({ email, newPassword }, { rejectWithValue }) => {
@@ -43,7 +41,6 @@ export const forgotPassword = createAsyncThunk(
   }
 );
 
-// 🚀 **Login qilish**
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
@@ -67,7 +64,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// 🚀 **Ro‘yxatdan o‘tish**
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async ({ name, email, password, confirmPassword }, { rejectWithValue }) => {
@@ -115,7 +111,7 @@ const authSlice = createSlice({
       .addCase(forgotPassword.fulfilled, (state, action) => {
         state.loading = false;
         state.message = action.payload;
-        state.emailVerified = false; // ✅ Email verification statusini tiklash
+        state.emailVerified = false; 
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;

@@ -14,7 +14,6 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const { loading, emailVerified } = useSelector((state) => state.auth);
 
-  // 📌 **Emailni tekshirish**
   const handleEmailSubmit = () => {
     if (!email) {
       toast.error("Please enter your email.");
@@ -30,22 +29,8 @@ const ForgotPassword = () => {
     });
   };
 
-  // 📌 **Parolni tiklash**
   const handlePasswordSubmit = () => {
-    if (!newPassword || !confirmNewPassword) {
-      toast.error("Please enter your new password.");
-      return;
-    }
 
-    if (newPassword.length < 6) {
-      toast.error("Password must be at least 6 characters.");
-      return;
-    }
-
-    if (newPassword !== confirmNewPassword) {
-      toast.error("Passwords do not match!");
-      return;
-    }
 
 dispatch(forgotPassword({ email, newPassword }))
   .unwrap()
